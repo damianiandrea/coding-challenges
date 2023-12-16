@@ -87,12 +87,14 @@ func runCCWC(t *testing.T, args ...string) (string, error) {
 }
 
 func assertNil(t *testing.T, actual any) {
+	t.Helper()
 	if actual != nil {
 		t.Errorf("got %v, want nil", actual)
 	}
 }
 
 func assertEqual(t *testing.T, actual, expected any) {
+	t.Helper()
 	if actual != expected {
 		t.Errorf("got %v, want %v", actual, expected)
 	}
