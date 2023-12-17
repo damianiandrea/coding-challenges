@@ -8,57 +8,57 @@ import (
 
 func TestCCWC(t *testing.T) {
 	t.Run("no flags", func(t *testing.T) {
-		actual, err := runCCWC(t, "testdata/hello.txt")
-		expected := "3 14 66 testdata/hello.txt\n"
+		actual, err := runCCWC(t, "testdata/test.txt")
+		expected := "7145 58164 342190 testdata/test.txt\n"
 
 		assertNil(t, err)
 		assertEqual(t, actual, expected)
 	})
 
 	t.Run("lines flag", func(t *testing.T) {
-		actual, err := runCCWC(t, "-l", "testdata/hello.txt")
-		expected := "3 testdata/hello.txt\n"
+		actual, err := runCCWC(t, "-l", "testdata/test.txt")
+		expected := "7145 testdata/test.txt\n"
 
 		assertNil(t, err)
 		assertEqual(t, actual, expected)
 	})
 
 	t.Run("words flag", func(t *testing.T) {
-		actual, err := runCCWC(t, "-w", "testdata/hello.txt")
-		expected := "14 testdata/hello.txt\n"
+		actual, err := runCCWC(t, "-w", "testdata/test.txt")
+		expected := "58164 testdata/test.txt\n"
 
 		assertNil(t, err)
 		assertEqual(t, actual, expected)
 	})
 
 	t.Run("characters flag", func(t *testing.T) {
-		actual, err := runCCWC(t, "-m", "testdata/locale.txt")
-		expected := "40 testdata/locale.txt\n"
+		actual, err := runCCWC(t, "-m", "testdata/test.txt")
+		expected := "339292 testdata/test.txt\n"
 
 		assertNil(t, err)
 		assertEqual(t, actual, expected)
 	})
 
 	t.Run("bytes flag", func(t *testing.T) {
-		actual, err := runCCWC(t, "-c", "testdata/locale.txt")
-		expected := "44 testdata/locale.txt\n"
+		actual, err := runCCWC(t, "-c", "testdata/test.txt")
+		expected := "342190 testdata/test.txt\n"
 
 		assertNil(t, err)
 		assertEqual(t, actual, expected)
 	})
 
 	t.Run("all flags", func(t *testing.T) {
-		actual, err := runCCWC(t, "-l", "-w", "-m", "-c", "testdata/locale.txt")
-		expected := "0 9 40 44 testdata/locale.txt\n"
+		actual, err := runCCWC(t, "-l", "-w", "-m", "-c", "testdata/test.txt")
+		expected := "7145 58164 339292 342190 testdata/test.txt\n"
 
 		assertNil(t, err)
 		assertEqual(t, actual, expected)
 	})
 
 	t.Run("no such file or directory", func(t *testing.T) {
-		actual, err := runCCWC(t, "testdata/hello1.txt")
+		actual, err := runCCWC(t, "testdata/test1.txt")
 		expectedErr := "exit status 1"
-		expected := "ccwc: open testdata/hello1.txt: no such file or directory\n"
+		expected := "ccwc: open testdata/test1.txt: no such file or directory\n"
 
 		assertEqual(t, err.Error(), expectedErr)
 		assertEqual(t, actual, expected)
